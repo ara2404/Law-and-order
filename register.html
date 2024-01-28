@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nav Bar Example</title>
+    <style>
+        body {
+            background-image: url('/storage/emulated/0/Download/blue-curve-background_53876-113112.webp');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        
+        .form {
+            margin: 15px;
+            border: 1px solid #04AA6D;
+            border-radius: 5px;
+            padding: 30px;
+            max-width: 100%;
+        }
+        .dbtn {
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            padding: 10px;
+            border: none;
+            background-color: #55acff;
+            border-radius: 5px;
+        }
+        input[type=text],
+        input[type=password],
+        input[type=email] {
+            padding: 10px 15px;
+            margin: 10px;
+            width: 85%;
+            display: inline-block;
+            border: none;
+            outline:none;
+            border-bottom: 1.5px solid #04AA6D;
+        }
+        
+        input[type=text]:hover {
+            outline: none;
+            box-shadow: 2.5px 2.5px 2.5px #04AA6D;
+        }
+        
+        input[type=email]:hover {
+            outline: none;
+            box-shadow: 2.5px 2.5px 2.5px #04AA6D;
+        }
+        
+        input[type=password]:hover {
+            outline: none;
+            box-shadow: 2.5px 2.5px 2.5px #04AA6D;
+        }
+        
+        input[type=checkbox] {
+            margin-top: 50px;
+            size: 5px;
+            accent-color: #04AA6D;
+        }
+        
+        input[type=submit] {
+            margin: 20px;
+            padding: 10px;
+            border: none;
+            background-color: #04AA6D;
+            border-radius: 5px;
+            color:white;
+        }
+        
+        input[type=submit]:hover {
+            box-shadow: 2px 2px 4px #04AA6D;
+        }
+    </style>
+</head>
+<body>
+        <center><h2>User Registration</h2></center>
+        <div class="form">
+            <form name="myform" method="post" onsubmit="return validateForm()">
+                <b><label for="fname">FirstName:</label></b><br>
+                <input type="text" name="fname" placeholder="Your FirstName" onchange="upperCase()" autofocus><br>
+                <b><label for="lname">LastName:</label></b><br>
+                <input type="text" name="lname" placeholder="Your LastName" onchange="upperCase()"><br>
+                <b><label for="email">Gmail:</label></b><br>
+                <input type="email" name="mail" placeholder="Your Gmail"><br>
+                <b><label for="password">Create Password:</label</b><br>
+                <input type="password" name="password" placeholder="Create Your Password">
+                <b><label for="password1">Re-Enter Password:</label></b><br>
+                <input type="password" name="password1" placeholder="Re-Enter Your Password"><br>
+                <center>
+                    <input type="checkbox" name="cb">
+                    <label class="lb" for="cb" style="font-size:15px;"><i>Accepting the terms and policies</i></label>
+                </center>
+                <br>
+                <center>
+                    <input type="submit" value="Submit">
+                </center>
+            </form>
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+            var fname = document.forms["myform"]["fname"].value;
+            var lname = document.forms["myform"]["lname"].value;
+            var password = document.forms["myform"]["password"].value;
+            var password1 = document.forms["myform"]["password1"].value;
+            
+            if (fname === null || fname === "" || lname === null || lname === "") {
+                alert("Enter Your Name & Details..!!");
+                return false;
+            } else if (password !== password1) {
+                alert("Password is not matching..!");
+                return false;
+            } else if (password === null || password === "") {
+                alert("Create your password..!!");
+                return false;
+            } else if (password.length < 6) {
+                alert("Password length should be at least 6 characters..!!");
+                return false;
+            }else{
+                alert("sucessfull");
+                login();
+            }
+            
+        }
+        
+        function upperCase() {
+            const x = document.forms["myform"]["fname"];
+            x.value = x.value.toUpperCase();
+            
+            const y = document.forms["myform"]["lname"];
+            y.value = y.value.toUpperCase();
+        }
+        function login(){
+            location.href="login.html";
+            return true;
+                }
+    </script>
+</body>
+</html>

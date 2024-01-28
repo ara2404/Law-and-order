@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LAW AND ORDER-CRIME REPORTING SYSTEM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+  box-sizing: border-box;
+}
+ .darkmode
+{
+	    background-color:black;
+     color:white;
+}
+::selection{
+    background-color:#04AA6D;
+    color:white;
+}
+        .bar_container{  
+            padding:5px;
+            margin:0;
+            position:absolute;
+            top:25px;
+            right:30px;
+            box-sizing: border-box;
+            position: fixed;
+        }
+        .bar1, .bar2, .bar3{
+             width:35px;
+             height:5px;
+             background-color:white;
+             margin:4px;
+         }
+          .bar_background{
+             background-color:#04AA6D;
+             height:80px;
+             width:100%;
+             z-index:0;
+             position:fixed;
+             top:0;
+             left:0;
+         }
+         img{
+            float: left;
+            margin:5px 0 0 50px;
+         }
+         .clg{
+             text-align:center;
+             color:white;
+             font-size: 25px;
+             font-weight: bolder;
+             margin-top: 14px;
+         }
+         .clg_place{
+             display: block;
+             font-size: 23px;
+         }
+    ul
+       {
+  position: absolute;
+ 	top:80px;
+ 	left:0;
+	list-style-type:none;
+	margin:0px;
+	padding:0px;
+ 	background-color:#04AA6D;
+ 	width:100%;
+ 	height:0;
+ 	border-top:1px solid #dedede;
+ 	visibility:hidden;
+ 	opacity:0;
+ 	transition:height 0.3s linear, visibility 0.3s linear, opacity 0.3s linear;
+      }
+.show {
+    height:50px;
+    opacity:1;
+    visibility:visible;
+}
+    li{
+          float:left;
+          text-align:center;
+          margin-left:120px;
+      }
+    li a{
+	text-decoration:none;
+    display:block;
+	text-align:center;
+	padding:15px 20px;
+	color:white;
+    font-weight: bolder;
+}
+li a:hover{
+	    background-color:#d5dfff;
+     color:black;
+}
+li a:active{
+    background-color: #d5dfff;
+}
+.dropdown{
+    display:inline-block;
+}
+.dropdown_content{
+    display:none;
+    position:absolute;
+    background-color:#04AA6D;
+    min-width:180px;
+    z-index:1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.dropdown_content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display:block;
+  text-align:left;
+}  
+.dropdown:hover .dropdown_content{
+    display: block;
+}
+.dropdown_content a:hover{
+    background-color:#d5dfff;
+    color:black;
+}
+
+.vertical_nav{
+    float: left;
+    background-color:#04AA6D;
+    width:20%;
+    position: absolute;
+    top:134px;
+    left:0;
+    margin:0;
+    padding:0;
+    z-index: -1;
+    height: auto;
+}
+.vertical_nav a{
+    display:block;
+    padding:13px;
+    text-decoration:none;
+    color:white;
+    text-align:left;
+    border-bottom:1px solid white;
+}   
+.vertical_nav a:hover{
+    background-color:grey;
+}       
+.content{
+    width:78%;
+    position: absolute;
+    top:134px;
+    left:320px;
+    height:auto;    
+    font-size:30px;
+    border:1px solid black;
+    padding:5px;
+    text-align:center;
+    margin-left:0;
+    overflow: hidden;
+    z-index: -1;
+    background-color: #dedede;
+    background-clip: content-box;
+
+}
+.collegeContent{    
+    margin-bottom:0;
+}
+.more{
+    display:inline;
+}
+.nextContent{
+    display:none;
+}
+.mlButton{
+    border:none;
+    background-color:#04AA6D;
+    color:white;
+    padding:5px;
+    margin:20px 0 15px 0;
+    display: inline;
+}
+.scrollBtn{
+    display:none;
+    position:fixed;
+    bottom:100px;
+    right:80px;
+    border:none;
+    outline:none;
+    background-color:#04AA6D;
+    color:white;
+    font-size:55px;
+}
+.img_container{
+    position: absolute;
+    top: 550px;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    height: 380px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color:#dedede;
+    overflow: auto;
+    z-index: -2;
+    box-sizing: border-box;
+}
+.img_container > img{
+    width: 500px;
+    height:300px;
+}
+.img_container > img:hover{
+    transform: scale(1.15);
+    cursor: pointer;
+}
+.footer{
+    background-color: #dedede;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    width:100%;
+    left: 0;
+    bottom: -280px;
+}
+.left{
+    float: left;
+    font-weight: bolder;
+    margin-left: 5px;
+}
+.right{
+    float: right;
+    font-weight: bolder;
+    margin-right: 30px;
+}
+@media screen and (max-width: 500px){
+       li{
+          float:left;
+          text-align:center;
+          margin:0px;
+      }
+    .bar_container {
+        position:fixed;
+        right:0px;
+    }
+    .vertical_nav{
+        width: 100%;
+        position: absolute; 
+        top: 105px;
+        left:0;
+        background-color: #04AA6D;
+        text-align: center;
+        z-index:-1; 
+        border-bottom: 1px solid white;
+    }
+    img{
+            float: left;
+            margin:8px 0 0 20px;
+    }
+    .content{
+        width: 100%;
+        height:auto;
+        position: absolute;
+        top: 470px;
+        left: 0;
+        margin-left: 0;
+        padding: 10px; 
+        font-size: 20px; 
+        border: none; 
+        text-align: left; 
+        z-index:-1;
+    }
+    .mlButton{
+    margin:10px 10px 10px 0;
+}
+.scrollBtn{
+    display:none;
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    border:none;
+    outline:none;
+    background-color:#04AA6D;
+    color:white;
+    font-size:25px;
+}
+}
+    </style>
+</head>
+<body>
+    <div class="bar_background">
+        <img src="C:\Users\jagad\OneDrive\Desktop\Crime Reporting System\National Emblem.jpg" alt="image" height="72px" width="70px">
+      <p class="clg">LAW AND ORDER<span class="clg_place">Online Crime Reporting System</span>
+      </p>
+        </div>
+    </div>
+        
+    <div class="bar_container" id="bar_container" title="menu">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+   </div>
+   <ul id="nav">
+ <li class="dropdown" id="dropdown">
+ <a href="#" class="dropbtn">Home</a>
+</li>
+<li><a href="login.html" target="_blank">Police Login</a></li>
+<li class="dropdown">
+<a href="#" class="dropbtn"><i class="fa-solid fa-user-police"></i>Report Crime</a>
+<div class="dropdown_content">
+    <a href="register.html">Register</a>
+    <a href="login.html">Login</a>
+</div>
+    </li>
+ <li class="dropdown"><a href="#">Alerts</a>
+    <div class="dropdown_content">
+        <a href="Mobile.html">Mobile</a>
+        <a href="Email.html">Email</a>
+    </div>
+</li>
+ <li><a href="#">Apply</a></li>
+ <li onclick="darkmode()"><a href="#">Dark Mode</a></li>
+ </ul>
+ 
+<div class="vertical_nav">
+    <a href="#">Nearer Police Stations<i class="fa fa-caret-right" style="font-size:20px;float: right;"></i></a>
+    <a href="#">Most Wanted<i class="fa fa-caret-right" style="font-size:20px;float: right;"></i></a>
+    <a href="#">Information of missing persons<i class="fa fa-caret-right" style="font-size:20px;float: right;"></i></a>
+    <a href="#">Latest News and Updates on crime<i class="fa fa-caret-right" style="font-size:20px;float: right;"></i></a>
+    <a href="#">Feedback<i class="fa fa-caret-right" style="font-size:20px;float: right;"></i></a>
+    <a href="#">Become a reporter<i class="fa fa-caret-right" style="font-size:20px;float: right;"></i></a>
+    <a href="#">Most asked queries<i class="fa fa-caret-right" style="font-size:20px;float: right;"></i></a>
+    <a href="#">Remove my account<i class="fa fa-caret-right" style="font-size:20px;float: right;"></i></a>
+    <a href="#">Deactivate my account<i class="fa fa-caret-right" style="font-size:20px;float: right;"></i></a>
+</div>
+
+<div class="content">
+    <div class="collage_name">
+    <p style="color:#04AA6D;font-size:30px; font-family:Times New Roman;line-height:5px";>WELCOME TO</p> <span style="font-family:Times New Roman;">Online Crime Reporting System</span>
+    <p class="collegeContent">
+        “Law and Order-Online Crime Reporting System” is an application that covers complete case management system and this project will help in managing all activities of the police station. It can be used to report crimes and manage all the activities in a police station using computers by tracking all the details of
+complaints. Currently most tasks are done manually, but by computerizing all the activities inside a police station the working systems can be managed easily and effectively..<span id="more" class="more">...</span><span class="nextContent" id="nextContent">The modules involved in this project are: Login for user and admin, complaint registration, view complaint status, criminal register management, case history details management, latest news regarding crime in the city. Safety tips for individuals, especially for women and also for vendors. The design
+    specifically looks into the crime discovery and prevention. This study aims to give an overview of the investigative process and, in doing so, identify effective and effective approaches to the exploration and discovery of the volume of crimes. An online crime reporting system which is easily accessible to the public and the
+    police department. This system registers the complaints from people through
+    online with the help of automation of police station records, including complaints, Admin, User and Police Station Management System. It will also helpful to police department in catching law breaks. Public can give any complaint at any time.
+    </span>
+    </p>
+    <button onclick="moreLess()" id="mlButton" class="mlButton">Read more</button>
+    </div>
+</div>
+<button onclick="scrlTop()" id="scrollBtn" class="scrollBtn">
+    <i class="fa fa-arrow-up">
+</button>
+<div class="img_container">
+    <img src="C:\Users\jagad\OneDrive\Desktop\Crime Reporting System\crime1.jpg" alt="image">
+    <img src="C:\Users\jagad\OneDrive\Desktop\Crime Reporting System\crime2.jpg" alt="image">
+    <img src="C:\Users\jagad\OneDrive\Desktop\Crime Reporting System\Crime3.jpg" alt="image">
+    <img src="C:\Users\jagad\OneDrive\Desktop\Crime Reporting System\Crime4.jpg" alt="image">
+    <img src="C:\Users\jagad\OneDrive\Desktop\Crime Reporting System\Crime5.jpg" alt="image">
+    <img src="C:\Users\jagad\OneDrive\Desktop\Crime Reporting System\Crime3.jpg" alt="image">
+    <img src="C:\Users\jagad\OneDrive\Desktop\Crime Reporting System\Crime3.jpg" alt="image">
+    <img src="C:\Users\jagad\OneDrive\Desktop\Crime Reporting System\crime2.jpg" alt="image">
+    <img src="C:\Users\jagad\OneDrive\Desktop\Crime Reporting System\Crime4.jpg" alt="image">
+</div>
+<footer class="footer">
+    <p class="left">© 2024 Aravind, All Rights Reserved.</p>
+    <p class="right">Done by Aravind P,MCA II Year(SEC-A)</p>
+</footer>
+ <script>
+     function darkmode(){	document.body.classList.toggle("darkmode");
+}
+var menu = document.getElementById("bar_container");
+menu.addEventListener("click", openClose);
+    function openClose(){
+        var nav = document.getElementById("nav");
+    nav.classList.toggle("show");
+    }
+
+function moreLess(){
+   var moreDots = document.getElementById("more");
+   var button = document.getElementById("mlButton");
+   var nextContent = document.getElementById("nextContent");
+   if(moreDots.style.display === "none"){
+       moreDots.style.display = "inline";
+       nextContent.style.display ="none";
+       button.innerHTML = "Read More";
+   }
+   else{
+  moreDots.style.display = "none";
+ nextContent.style.display="block";
+  button.innerHTML="Read Less";
+   }
+}
+
+let scrollBtn = document.getElementById("scrollBtn");
+
+window.onscroll = function(){
+    buttonDis();
+}
+function buttonDis()
+{
+    if(document.documentElement.scrollTop > 450)
+    {
+        scrollBtn.style.display = "block";
+    }
+    else{
+        scrollBtn.style.display = "none";
+    }
+}
+function scrlTop(){
+    //document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+ </script>
+</body>
+</html>

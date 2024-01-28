@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page title</title>
+    <style>
+         *{
+            box-sizing: border-box;
+        }
+        h1{
+            text-align:center;
+        }
+        hr{
+            margin-bottom:30px;
+        }
+        .container{
+            border:1px solid #8b8b8b;
+            padding:20px;
+            
+        }
+        form{
+            border:1px solid #8b8b8b;
+            padding:2px;
+            max-width:100%;
+        }
+ input[type=text],input[type=password]{
+            margin: 8px 0px;  
+            padding: 8px 10px; 
+            display:block;
+            width:50%;
+            box-sizing: border-box;
+            border:none;
+            outline:none;
+            border-bottom:1.5px solid #04AA6D;
+        }
+        input[type=checkbox]{
+      accent-color: #04AA6D;
+}
+        input[type=text]:hover {
+            outline: none;
+           box-shadow: 1.5px 1.5px 2.5px #04AA6D;
+            }
+        input[type=password]:hover {
+            outline: none;
+           box-shadow: 1.5px 1.5px 2.5px #04AA6D;
+            }
+ button:hover{
+    box-shadow: 2px 2px 4px #04AA6D;
+}
+.cancelbtn > input[type="reset"]:hover{
+    box-shadow: 2px 2px 4px #04AA6D;
+}
+        button{
+            border:none;
+            padding:5px;
+            width:60px;
+            background-color:#04AA6D;
+            color:white;
+            margin:12px auto 12px 135px;
+            border-radius:3px;
+        }
+        .bottom_container{
+            display:flex;
+         justify-content:space-between;
+            align-items: baseline;
+        }
+        span a{
+            text-decoration:none;
+        }
+        .cancelbtn > input[type="reset"]{
+            border:none;
+            border-radius:3px;
+            width:55px;
+            padding:5px;
+            background-color:#04AA6D;
+            color:white;
+            display:block;
+            margin:15px auto 15px auto;
+            
+        }
+        .redline{
+            border-bottom:2px solid red;
+        }
+        @media screen and (min-width: 480px){
+            form{
+                width:50%;
+                margin-left:auto;
+                margin-right:auto;
+            }
+            button{
+                margin-left:185px;
+            }
+            input[type=text],input[type=password]{
+                width:100%;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>Login</h1>
+    <hr></hr>
+    <form name="login_form" onsubmit="return warning()">
+    <div class="container">
+        <div class="inner">
+            <b><label for="username">Username:</label></b>
+            <input type="text" id="username" placeholder="Enter User Name" name="username" onchange="upperCase()" autofocus><b><p id="un_warning" style="color:red;"></p></b>
+            <b><label for="password">Password:</label></b>
+            <input type="password" id="password" name="password" placeholder="Enter Password">
+            <label for="show">
+      <input type="checkbox" name="show" id="showpswd" onclick="show_pswd()">Show password
+    </label>
+            <b><p id="pswd_warning" style="color:red;"></p></b>
+            <button type="submit" id="submitBtn">Submit</button></div>
+      <div class="bottom_container">
+             <label>          
+      <input type="checkbox" name="remember">Remember me
+    </label>
+     <span><a href="#">Forgot Password</a></span>
+     </div>
+     </div>
+    <div class="cancelbtn">
+       <input type="reset" value="Clear">
+    </div>
+    </div>
+    </form>
+    <script>
+        function show_pswd(){
+        var show = document.getElementById("password");
+            if (show.type === "password") {
+    show.type = "text";
+  } else {
+    show.type = "password";
+  }
+
+        }
+    let txt = "*Required field";
+
+    function warning() {
+        let x = document.login_form.username.value;
+        let y = document.login_form.password.value;
+
+        let isValid = true;
+
+        if (x === "") {
+            document.getElementById("un_warning").innerHTML = txt;
+document.getElementById("username").classList.add("redline");
+            isValid = false;
+        } else {
+            document.getElementById("un_warning").innerHTML = "";
+        }
+
+        if (y === "") {
+            document.getElementById("pswd_warning").innerHTML = txt;
+            isValid = false;
+        } 
+        if(y==="")
+        {
+            document.getElementById("pswd_warning").innerHTML = txt;
+            isValid = false;
+        }
+        else if(y.length<6){
+            document.getElementById("pswd_warning").innerHTML = "*Password length must be atleast 6 characters";  
+            isValid = false;
+        }
+        else { 
+        document.getElementById("pswd_warning").innerHTML = "";
+        alert("Login Successfull..!")
+        }
+        return isValid;
+    }
+    function upperCase() {
+            const x = document.forms["login_form"]["username"];
+            x.value = x.value.toUpperCase();
+            }
+            
+document.getElementById("username").addEventListener("input", function () {
+        document.getElementById("un_warning").innerHTML = "";
+    });
+
+    document.getElementById("password").addEventListener("input", function () {
+        document.getElementById("pswd_warning").innerHTML = "";
+    });
+</script>
+
+</body>
+</html>

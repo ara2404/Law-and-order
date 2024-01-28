@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERIFY USER</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #04AA6D;
+            padding: 35px;
+            width: 350px;
+            height: 280px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .show_otp{
+            text-align:justify;
+            margin: 8px;
+            display: none;
+        }
+        .otp_number{
+            color: #04AA6D;
+            letter-spacing: 30px;
+            font-weight: bolder;
+        }
+        .otp_container{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            margin-top: 3px;
+        }
+        .otp_container > input{
+            width: 100%;
+            height: 35px;
+            margin: 2px 8px 0 12px;
+            padding: 5px 10px;
+            border: none;
+            outline: none;
+            border:1px solid #04AA6D;
+        }
+        .alert{
+            border: none;
+            outline: none;
+            margin: 20px auto 5px auto;
+            padding: 5px;
+            color: white;
+            background-color: #04AA6D;
+            width: 80px;
+            border-radius: 2px;
+        }
+        .alert:hover{
+            background-color: gray;
+        }
+        .input_container{
+            display: flex;
+            max-width: 280px;
+            padding: 8px;
+            border: none;
+            outline: none;
+        }
+        .input_container > input{
+            border: none;
+            outline: none;
+            border:1px solid #04AA6D;
+            width: 80%;
+            padding: 5px 10px;
+            margin-top: 3px;
+        }
+        .get_otp{
+            border: none;
+            outline: none;
+            color: white;
+            background-color: #04AA6D;
+            margin-top: 3px;
+            padding: 3px;
+            width: 20%;
+        }
+        .get_otp:hover{
+            background-color: gray;
+        }
+        input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+    </style>
+</head>
+<body>
+    <center><h1>GET ALERTS</h1>
+    </center>
+    <hr></hr>
+    <form onsubmit="return verifyOTP(event)">
+    <div class="container">
+        <b><label for="email">EMAIL:</label></b>
+    <div class="input_container">
+        <input type="email" id="email" name="email" placeholder="EMAIL" autofocus required>
+        <button type="button" id="get_otp" class="get_otp" onclick="generate_otp()">GET OTP</button>
+    </div>
+        <b><label for="otp" class="otp">OTP:</label></b>
+        <div class="otp_container">
+            <input type="number" id="otp" name="otp" placeholder="OTP">
+        </div>
+        <input type="submit" value="VERIFY" id="alert" class="alert" onclick="verifyOTP()">
+        <p id="show_otp" class="show_otp">Your OTP:<span id="otp_number" class="otp_number"></span></p>
+    </div>
+    </form>
+    <script>
+        
+        let show_otp = document.getElementById("show_otp");
+        
+        function generate_otp(){
+            let mail = document.getElementById("email").value;
+            let otp = document.getElementById("otp_number");
+            if(mail === ""){
+                alert("ENTER MOBILE NUMBER..!");
+            }
+            else{
+                otp.innerHTML = " "+ Math.floor(Math.random()*10000);
+                show_otp.style.display ="inline";
+            }
+           /*let inp = document.getElementById("otp");
+            inp.value = Math.floor(Math.random()*10000);*/
+        }
+
+        function verifyOTP()
+        {
+           event.preventDefault();
+        let entered_otp = document.getElementById("otp").value.trim(); 
+        let generated_otp = document.getElementById("otp_number").innerHTML.trim();
+        let alert_btn = document.getElementById("alert");
+            if(entered_otp.toString() === generated_otp.toString() && entered_otp.toString()!="")
+            {
+                alert_btn.value="Verified!";
+                show_otp.style.display="none";
+                alert("VERIFIED...!");
+                location.href = "Home Page.html";
+            }
+            else if(entered_otp === ""){
+                alert("Enter OTP");
+                alert_btn.value="VERIFY";
+            }
+            else{
+                show_otp.innerHTML = "OTP MISMATCH...!";
+                show_otp.style.color = "red";
+                show_otp.style.textAlign = "center";
+                setTimeout(clear, 1000);
+            }
+        }
+        function clear(){
+            document.getElementById("otp").value="";
+        }
+    </script>
+</body>
+</html>
